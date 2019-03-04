@@ -68,21 +68,21 @@ results.sum <- results.complete %>%
                        ))
 
 
-top_6 <- results.sum %>%
+top_teams <- results.sum %>%
   filter(ordering > 0) #used if you don't want to show all the positions at once
 
 
-chart <- top_6 %>%
+chart <- top_teams %>%
   ggplot(aes(x = ordering, group = team)) + 
   geom_tile(aes(y = cumpoints/2,
                 height = cumpoints,
                 width = 0.8,
                 fill = team),
-            alpha = ifelse(top_6$ordering > 16, 1, 1), #could toggle different transparency for clubs outside of top 4
+            alpha = ifelse(top_teams$ordering > 16, 1, 1), #could toggle different transparency for clubs outside of top 4
     show.legend = F) +
   geom_vline(xintercept = 16.5, linetype = 'dashed', colour = '#222222', size = .3) +
   geom_vline(xintercept = 3.5, linetype = 'dashed', colour = '#222222', size = .3) +
-  scale_fill_manual(values = as.character(unique((top_6 %>% arrange(team))$colour))) +
+  scale_fill_manual(values = as.character(unique((top_teams %>% arrange(team))$colour))) +
   geom_text(aes(y = 0, label = team), hjust = 0, size = 5.7, color = 'white') +
   geom_text(aes(y = cumpoints+1, label = as.character(cumpoints)), hjust = 0, size = 5.7) +
   theme(panel.background = ggplot2::element_blank(),
