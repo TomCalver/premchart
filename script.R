@@ -1,4 +1,4 @@
-#devtools::install_github('thomasp85/gganimate')
+#devtools::install_github('thomasp85/gganimate') 
 pacman::p_load('tidyverse', 'rvest', 'pbapply', 'gganimate', 'gifski')
 
 gameweek = 29
